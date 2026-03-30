@@ -1,62 +1,66 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>EMI Calculator</title>
+  <title>EMI Calculator Pro</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      background: #0f172a;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
+      color: white;
     }
 
     .box {
-      background: white;
+      background: #1e293b;
       padding: 30px;
-      width: 320px;
+      width: 340px;
       border-radius: 15px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
       text-align: center;
     }
 
     h2 {
       margin-bottom: 20px;
-      color: #333;
     }
 
     input {
       width: 90%;
       padding: 12px;
       margin: 10px 0;
-      border: 1px solid #ccc;
+      border: none;
       border-radius: 8px;
-      font-size: 14px;
+      background: #334155;
+      color: white;
     }
 
     button {
       width: 100%;
       padding: 12px;
-      background: #4facfe;
+      background: #22c55e;
       color: white;
       border: none;
       border-radius: 8px;
       font-size: 16px;
       cursor: pointer;
-      transition: 0.3s;
+      margin-top: 10px;
     }
 
     button:hover {
-      background: #007bff;
+      background: #16a34a;
     }
 
-    #result {
+    .result {
       margin-top: 20px;
-      font-size: 18px;
-      font-weight: bold;
-      color: #333;
+      text-align: left;
+      font-size: 15px;
+    }
+
+    .result div {
+      margin: 8px 0;
     }
   </style>
 </head>
@@ -69,9 +73,9 @@
   <input type="number" id="rate" placeholder="Interest Rate (%)">
   <input type="number" id="time" placeholder="Time (months)">
 
-  <button onclick="calculateEMI()">Calculate EMI</button>
+  <button onclick="calculateEMI()">Calculate</button>
 
-  <div id="result"></div>
+  <div class="result" id="result"></div>
 </div>
 
 <script>
@@ -81,9 +85,13 @@ function calculateEMI() {
   let N = document.getElementById("time").value;
 
   let EMI = (P * R * Math.pow(1+R, N)) / (Math.pow(1+R, N) - 1);
+  let totalPayment = EMI * N;
+  let totalInterest = totalPayment - P;
 
   document.getElementById("result").innerHTML =
-    "Monthly EMI: ₹" + EMI.toFixed(2);
+    "<div>Monthly EMI: ₹" + EMI.toFixed(2) + "</div>" +
+    "<div>Total Payment: ₹" + totalPayment.toFixed(2) + "</div>" +
+    "<div>Total Interest: ₹" + totalInterest.toFixed(2) + "</div>";
 }
 </script>
 
