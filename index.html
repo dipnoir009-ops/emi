@@ -4,30 +4,59 @@
   <title>EMI Calculator</title>
   <style>
     body {
-      font-family: Arial;
-      text-align: center;
-      background: #f5f5f5;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
     }
+
     .box {
       background: white;
-      padding: 20px;
-      margin: 50px auto;
-      width: 300px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 30px;
+      width: 320px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      text-align: center;
     }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
     input {
-      margin: 10px;
-      padding: 10px;
       width: 90%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
     }
+
     button {
-      padding: 10px;
       width: 100%;
-      background: #007bff;
+      padding: 12px;
+      background: #4facfe;
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #007bff;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
     }
   </style>
 </head>
@@ -36,13 +65,13 @@
 <div class="box">
   <h2>EMI Calculator</h2>
 
-  <input type="number" id="loan" placeholder="Loan Amount">
+  <input type="number" id="loan" placeholder="Loan Amount (₹)">
   <input type="number" id="rate" placeholder="Interest Rate (%)">
   <input type="number" id="time" placeholder="Time (months)">
 
-  <button onclick="calculateEMI()">Calculate</button>
+  <button onclick="calculateEMI()">Calculate EMI</button>
 
-  <h3 id="result"></h3>
+  <div id="result"></div>
 </div>
 
 <script>
@@ -53,8 +82,8 @@ function calculateEMI() {
 
   let EMI = (P * R * Math.pow(1+R, N)) / (Math.pow(1+R, N) - 1);
 
-  document.getElementById("result").innerText =
-    "Your EMI is: ₹" + EMI.toFixed(2);
+  document.getElementById("result").innerHTML =
+    "Monthly EMI: ₹" + EMI.toFixed(2);
 }
 </script>
 
